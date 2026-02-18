@@ -2,28 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>B&O Landing</title>
-    <link
-      rel="stylesheet"
-      href="./styles/main.css"
-    />
+
+    <link rel="icon" href="./images/favicon.png" />
+
+    <link rel="stylesheet" href="./styles/main.css" />
   </head>
 
   <body>
     <header class="header">
       <div class="header__container container">
-        <a
-          href="#"
-          class="header__logo"
-        >
-          <img
-            src="./images/logo-bo.svg"
-            alt="Bang & Olufsen Logo"
-          />
+        <a href="#" class="header__logo">
+          <img src="./images/logo-bo.svg" alt="Bang & Olufsen Logo" />
         </a>
 
         <input
@@ -35,22 +27,19 @@
         <label
           for="menu-toggle"
           class="header__menu-button"
+          aria-label="Open menu"
         >
-          <img
-            src="./images/icon-menu.svg"
-            alt="Menu"
-          />
+          <img src="./images/icon-menu.svg" alt="Menu" />
         </label>
 
         <nav class="menu">
           <label
             for="menu-toggle"
             class="menu__close"
+            aria-label="Close menu"
+            role="button"
           >
-            <img
-              src="./images/icon-close.svg"
-              alt="Close"
-            />
+            <img src="./images/icon-close.svg" alt="Close" />
           </label>
 
           <ul class="menu__list">
@@ -62,18 +51,8 @@
           </ul>
 
           <div class="menu__contacts">
-            <a
-              href="tel:+19876543210"
-              class="menu__phone"
-            >
-              +1 987 654 3210
-            </a>
-            <a
-              href="mailto:support@bo.com"
-              class="menu__email"
-            >
-              support@bo.com
-            </a>
+            <a href="tel:+19876543210">+1 987 654 3210</a>
+            <a href="mailto:support@bo.com">support@bo.com</a>
           </div>
         </nav>
       </div>
@@ -89,17 +68,13 @@
 
       <div class="hero__text container">
         <p class="hero__title">
-          Sound perfected.
-          <br />
+          Sound perfected.<br />
           Designed for life.
         </p>
       </div>
     </section>
 
-    <section
-      class="products"
-      id="products"
-    >
+    <section class="products" id="products">
       <div class="container">
         <h2 class="products__title">Products</h2>
 
@@ -129,7 +104,7 @@
 
     <footer class="footer">
       <div class="container footer__container">
-        <p class="footer__text">© 2025 Bang & Olufsen. All rights reserved.</p>
+        <p>© 2025 Bang & Olufsen. All rights reserved.</p>
       </div>
     </footer>
   </body>

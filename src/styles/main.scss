@@ -2,7 +2,11 @@ $font-main: 'Inter', sans-serif;
 $text-color: #000;
 $gray: #7a7a7a;
 $white: #fff;
-$container-width: 744px;
+$container-max-width: 1200px;
+$breakpoint-md: 768px;
+$z-header: 10;
+$z-menu: 50;
+$transition: 0.3s ease;
 
 * {
   margin: 0;
@@ -29,9 +33,9 @@ a {
   color: inherit;
 }
 
-button {
-  background: none;
-  border: none;
+a,
+button,
+label {
   cursor: pointer;
 }
 
@@ -43,17 +47,15 @@ img {
 
 .container {
   width: 100%;
-  max-width: $container-width;
+  max-width: $container-max-width;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-.hidden {
-  display: none !important;
-}
-
 .header {
   padding: 20px 0;
+  position: relative;
+  z-index: $z-header;
 
   &__container {
     display: flex;
@@ -66,12 +68,13 @@ img {
   }
 
   &__toggle {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
   }
 
   &__menu-button {
     width: 28px;
-    cursor: pointer;
   }
 }
 
@@ -89,13 +92,12 @@ img {
   gap: 40px;
 
   transform: translateX(100%);
-  transition: transform 0.3s ease;
-  z-index: 50;
+  transition: transform $transition;
+  z-index: $z-menu;
 
   &__close {
     width: 28px;
     margin-left: auto;
-    cursor: pointer;
   }
 
   &__list {
@@ -116,11 +118,91 @@ img {
   }
 }
 
-input[type='checkbox']:checked ~ .menu {
+.header__toggle:checked ~ .menu {
   transform: translateX(0);
 }
 
-@media (min-width: 744px) {
+.menu__list a,
+.menu__contacts a {
+  transition: opacity $transition;
+}
+
+.menu__list a:hover,
+.menu__contacts a:hover {
+  opacity: 0.6;
+}
+
+.hero {
+  margin-bottom: 32px;
+
+  &__text {
+    margin-top: 20px;
+  }
+
+  &__title {
+    font-size: 32px;
+    line-height: 1.1;
+    font-weight: 700;
+  }
+}
+
+.products {
+  margin-bottom: 60px;
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform $transition, box-shadow $transition;
+  }
+
+  &__item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  }
+
+  &__image {
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform $transition;
+  }
+
+  &__item:hover &__image {
+    transform: scale(1.03);
+  }
+
+  &__name {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  &__price {
+    font-size: 16px;
+    color: #777;
+  }
+}
+
+.footer {
+  padding: 40px 0;
+  text-align: center;
+  color: $gray;
+  font-size: 14px;
+}
+
+@media (min-width: $breakpoint-md) {
   .header {
     padding: 32px 0;
 
@@ -138,28 +220,7 @@ input[type='checkbox']:checked ~ .menu {
     gap: 30px;
     font-size: 22px;
   }
-}
 
-.hero {
-  margin-bottom: 32px;
-
-  &__image img {
-    width: 100%;
-    height: auto;
-  }
-
-  &__text {
-    margin-top: 20px;
-  }
-
-  &__title {
-    font-size: 32px;
-    line-height: 1.1;
-    font-weight: 700;
-  }
-}
-
-@media (min-width: 744px) {
   .hero {
     margin-bottom: 48px;
 
@@ -168,45 +229,7 @@ input[type='checkbox']:checked ~ .menu {
       max-width: 500px;
     }
   }
-}
 
-.products {
-  margin-bottom: 60px;
-
-  &__title {
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 24px;
-  }
-
-  &__list {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  &__item {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  &__image {
-    border-radius: 12px;
-  }
-
-  &__name {
-    font-size: 16px;
-    font-weight: 600;
-  }
-
-  &__price {
-    font-size: 16px;
-    color: #777;
-  }
-}
-
-@media (min-width: 744px) {
   .products {
     margin-bottom: 80px;
 
@@ -215,12 +238,8 @@ input[type='checkbox']:checked ~ .menu {
     }
 
     &__list {
-      flex-direction: row;
+      grid-template-columns: repeat(2, 1fr);
       gap: 40px;
-    }
-
-    &__item {
-      width: calc(50% - 20px);
     }
   }
 }
